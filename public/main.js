@@ -48,13 +48,13 @@
     });
     
     // Record a pixel
-    function addClick(x, y, dragging) {
+    function addClick(x, y, dragging, fromServer) {
       clickX.push(x);
       clickY.push(y);
       clickDrag.push(dragging);
 
       // If we are in a room, send drawing to server
-      if (socket) {
+      if (!fromServer && socket) {
         socket.emit('addClick', {
           x: x,
           y: y,
@@ -90,7 +90,7 @@
         socket = io.connect(roomUrlInput.value);
         if (socket) {
           socket.on('draw', function(data) {
-            addClick(data.x, data.y, data.dragging);
+            addClick(data.x, data.y, data.dragging, true);
             redraw();
           });
         }
