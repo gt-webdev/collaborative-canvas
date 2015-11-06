@@ -1,0 +1,29 @@
+{
+  "name": "collaborative-canvas",
+  "version": "1.0.0",
+  "description": "A collaborative drawing canvas built using socket.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gt-webdev/collaborative-canvas.git"
+  },
+  "keywords": [
+    "socket.io",
+    "canvas",
+    "html5"
+  ],
+  "author": "Saleh Hamadeh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gt-webdev/collaborative-canvas/issues"
+  },
+  "homepage": "https://github.com/gt-webdev/collaborative-canvas#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.7"
+  }
+}
