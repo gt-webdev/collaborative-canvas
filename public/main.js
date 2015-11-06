@@ -89,6 +89,13 @@
       if (!socket) {
         socket = io.connect(roomUrlInput.value);
         if (socket) {
+          socket.on('initCanvas', function(data) {
+            clickX = data.clickX;
+            clickY = data.clickY;
+            clickDrag = data.clickDrag;
+            redraw();
+          });
+
           socket.on('draw', function(data) {
             addClick(data.x, data.y, data.dragging, true);
             redraw();

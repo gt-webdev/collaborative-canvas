@@ -3,8 +3,21 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+// Store canvas on server to download canvas when a client connects
+var clickX = [], clickY = [], clickDrag = [];
+
 io.sockets.on('connection', function(socket) {
+  socket.emit('initCanvas', {
+  	clickX: clickX,
+  	clickY: clickY,
+  	clickDrag, clickDrag
+  });
+
   socket.on('addClick', function(data) {
+  	clickX.push(data.x);
+  	clickY.push(data.y);
+  	clickDrag.push(data.dragging);
+
     socket.broadcast.emit('draw', {
       x: data.x,
       y: data.y,
