@@ -13,8 +13,8 @@
     // Socket.io
     var socket;
     
-    canvas.setAttribute("width", 300);
-    canvas.setAttribute("height", 300);
+    canvas.setAttribute("width", 600);
+    canvas.setAttribute("height", 600);
     
     // Start drawing when clicked
     canvas.addEventListener('mousedown', function(e) {
@@ -84,25 +84,21 @@
       }
     }
 
-    // Join a room
-    joinButton.addEventListener('click', function() {
-      if (!socket) {
-        socket = io.connect(roomUrlInput.value);
-        if (socket) {
-          socket.on('initCanvas', function(data) {
-            clickX = data.clickX;
-            clickY = data.clickY;
-            clickDrag = data.clickDrag;
-            redraw();
-          });
+    // Join the room
+    socket = io.connect(location.origin);
+    if (socket) {
+      socket.on('initCanvas', function(data) {
+        clickX = data.clickX;
+        clickY = data.clickY;
+        clickDrag = data.clickDrag;
+        redraw();
+      });
 
-          socket.on('draw', function(data) {
-            addClick(data.x, data.y, data.dragging, true);
-            redraw();
-          });
-        }
-      }
-    });
+      socket.on('draw', function(data) {
+        addClick(data.x, data.y, data.dragging, true);
+        redraw();
+      });
+    }
   }
   
   window.addEventListener('load', startup);
