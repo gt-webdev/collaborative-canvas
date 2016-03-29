@@ -7,7 +7,6 @@
     var context = canvas.getContext('2d');
 
     // Join room form
-    var roomUrlInput = document.getElementById('room-url');
     var joinButton = document.getElementById('join-button');
 
     // Socket.io
